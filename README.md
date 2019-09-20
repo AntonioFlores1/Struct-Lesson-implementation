@@ -1,14 +1,14 @@
 # Struct-Lesson-implementation
 
-### Structs & Classes
+### Structs
 ---
 
 ### Objectives
-* Understand the differences between structs and classes
-* To create and initialize structs and classes
-* Understand when to use a struct vs a class
+* Understanding structs
+* To create and initialize structs 
+* Understand when to use a struct 
 * Understand that structures are value types and what this implies
-* Understand classes are reference types and what this implies
+
 
 ### Readings
 1. [Swift Language Reference, Classes and Structures](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82)
@@ -107,6 +107,62 @@ The keyword *class* tells us that we are defining a new class named VideoMode.  
 - interlaced: Bool
 - frameRate: Double
 - name: String?
+
+### 2. Structs are Value Types
+
+So far, all of the types we have seen so far are actually structures, and thus are value types. The following definition is directly from the Swift Standard Library.
+
+```Swift
+public struct Bool {
+
+  ...
+
+  public init(_ value: Bool) {
+    self = value
+  }
+}
+```
+
+A structure is a *value type*.  This means that whenever you make a copy of structure, you copy the value that was held by it and create a new object.
+
+
+```swift
+var myBool = false
+var myBoolCopy = myBool
+myBool = true
+print(myBoolCopy)
+```
+
+What will be printed to the console in the example above and why?
+
+<details>
+<summary>Answer</summary>
+
+"false" will be printed to the console.  This is because we copied the **value** *false* and assigned a new object *myBoolCopy* to it.  It is not tied to the original that we copied it from.
+
+</details>
+
+We can see the same behavior in structures that we define ourselves:
+
+```swift
+struct Size {
+  var width = 0.0
+  var height = 0.0
+}
+var sampleSize = Size(width: 5.0, height: 10.0)
+var sampleSizeCopy = sampleSize
+sampleSize.width = 2.0
+print(sampleSizeCopy.width)
+```
+
+What will be printed to the console in the example above and why?
+
+<details>
+<summary>Answer</summary>
+
+"5.0" will be printed to the console.  This is because we copied the **value** *5.0* and assigned a new object * sampleSizeCopy* to it.  It is not tied to the original that we copied it from.
+
+</details>
 
 ### 4. Creating Instances of Structs & Classes
 
