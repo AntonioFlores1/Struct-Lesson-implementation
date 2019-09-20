@@ -58,13 +58,9 @@ Structures and classes are general-purpose, flexible constructs that become the 
 
 ### 2. Definition Syntax
 
-Classes and structures have a similar definition syntax. You introduce classes with the `class` keyword and structures with the `struct` keyword. Both place their entire definition within a pair of braces.
+structures have a similar definition syntax. You introduce structures with the `struct` keyword. Both place their entire definition within a pair of braces.
 
 ```swift
-class SomeClass {
-    // class definition goes here
-}
-
 struct SomeStructure {
     // structure definition goes here
 }
@@ -79,7 +75,7 @@ From the Apple documentation:
 
 ### 3. Stored Properties
 
-Properties are constants and variables encapsulated inside classes and structures.
+Properties are constants and variables encapsulated inside structures.
 
 > From Apple:
 
@@ -91,22 +87,6 @@ struct Resolution {
 ```
 
 The keyword *struct* tells us that we are defining a new structure.  Resolution is the name of this struct.  We have defined a Resolution to have two *properties*, width and height.  Type inference sets these properties to Ints, and gives them both an initial value of 0.
-
-```swift
-class VideoMode {
-    var resolution = Resolution()
-    var interlaced = false
-    var frameRate = 0.0
-    var name: String?
-}
-```
-
-The keyword *class* tells us that we are defining a new class named VideoMode.  It has four *properties* as shown below.
-
-- resolution: Resolution
-- interlaced: Bool
-- frameRate: Double
-- name: String?
 
 ### 2. Structs are Value Types
 
@@ -164,9 +144,9 @@ What will be printed to the console in the example above and why?
 
 </details>
 
-### 4. Creating Instances of Structs & Classes
+### 4. Creating Instances of Structs
 
-The `Resolution` structure definition and the `VideoMode` class definition only describe what a `Resolution` or `VideoMode` will look like. They themselves do not describe a *specific* resolution or video mode. To do that, you need to create an instance of the structure or class. Structures and classes both use **initializer syntax** for new instances.
+The `Resolution` structure definition only describe what a `Resolution` will look like. They themselves do not describe a *specific* resolution. To do that, you need to create an instance of the structure. Structures use **initializer syntax** for new instances.
 
 We have already seen an initializer in the example above:
 
@@ -192,7 +172,6 @@ In a default initializer, the name of the type is followed by empty parentheses.
 
 ```swift
 let someResolution = Resolution()
-let someVideoMode = VideoMode()
 ```
 
 Declaring an optional stored property as a constant (without an initial value) will inhibit you from using a default initializer.
@@ -268,24 +247,16 @@ userOne.isLoggedIn = true // Changes isLoggedIn to true
 userOne.name = "Beth" //Compile error because name is a let constant
 ```
 
-We can also assign structs and classes to constants.  Because structs are value types, we can't change properties of a struct assigned to a let constant.  Because classes are reference types, we can change properties of a class assigned to a let constant.
-
+We can also assign structs to constants.  Because structs are value types, we can't change properties of a struct assigned to a let constant. 
 ```swift
 struct User {
     let name: String
     var isLoggedIn: Bool
 }
 
-class Dog {
-    let numberOfLegs: Int = 4
-    var isSleepy: Bool = false
-}
-
 let userOne = User(name: "Adam", isLoggedIn: false)
 userOne.isLoggedIn = true // Compile-time error: userOne is a let constant
 
-let doggo = Dog()
-doggo.isSleepy = true //No errors, doggo.isSleepy is now true
 ```
 
 ### 5. Instance methods
