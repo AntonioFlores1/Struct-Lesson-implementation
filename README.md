@@ -58,7 +58,7 @@ Structures and classes are general-purpose, flexible constructs that become the 
 
 ### 2. Definition Syntax
 
-structures have a similar definition syntax. You introduce structures with the `struct` keyword. Both place their entire definition within a pair of braces.
+structures have a similar definition syntax as classes. You introduce structures with the `struct` keyword. Both place their entire definition within a pair of braces.
 
 ```swift
 struct SomeStructure {
@@ -148,15 +148,7 @@ What will be printed to the console in the example above and why?
 
 The `Resolution` structure definition only describe what a `Resolution` will look like. They themselves do not describe a *specific* resolution. To do that, you need to create an instance of the structure. Structures use **initializer syntax** for new instances.
 
-We have already seen an initializer in the example above:
-
-```
-class VideoMode {
-    var resolution = Resolution()
-	...
-```
-
-Where have you seen this syntax before?
+Where have you seen initialization syntax before?
 
 <details>
 <summary>Some examples</summary>
@@ -169,10 +161,6 @@ Where have you seen this syntax before?
 
 #### Default Initializers
 In a default initializer, the name of the type is followed by empty parentheses. You can use default initializers when your types either don’t have any stored properties, or when all of the type’s stored properties have default values. This holds true for both structures and classes.
-
-```swift
-let someResolution = Resolution()
-```
 
 Declaring an optional stored property as a constant (without an initial value) will inhibit you from using a default initializer.
 
