@@ -370,12 +370,57 @@ SomeClass.someTypeMethod()
 
 Within the body of a type method, the implicit `self` property refers to the type itself, rather than an instance of that type. This means that you can use `self` to disambiguate between type properties and type method parameters, just as you do for instance properties and instance method parameters.
 
+### 4. Mutating functions
+
+What happens when we rewrite the Counter class as a struct?
+
+```swift
+struct Counter {
+    var count = 0
+
+    func increment() {
+        count += 1
+    }
+    func increment(by amount: Int) {
+        count += amount
+    }
+    func reset() {
+        count = 0
+    }
+}
+```
+
+We notice we get some compiler errors.  They say:
+
+>Left side of mutating operator isn't mutable: 'self' is immutable
+
+We can see that we have marked the property count as a variable and not a constant, but we still getting an error.  Why?
+
+Remember that structures are value types.  This means that when a user creates a structure, they expect that it will stay the same value.  If we want to change a property, we have to manually set it ourselves.  It also means that users of a structure will expect that using methods won't change the original information.  If we are breaking this expectation, we need to explicitly mark that in the function with the keyword *mutating*.  Mutating means "to change", so we are indicating this function will change *self*.  Let's update the struct to compile:
+
+```swift
+struct Counter {
+    var count = 0
+
+    mutating func increment() {
+        count += 1
+    }
+    mutating func increment(by amount: Int) {
+        count += amount
+    }
+    mutating func reset() {
+        count = 0
+    }
+}
+```
+
+If you notice that you are having to mark a lot of things as mutating, it might be a good idea to use a class instead of a structure.
 
 
 ### 7. Review and Wrapup
 
-* How can we create a struct/class definition?
-* How can we create an instance of a struct/class?
+* How can we create a struct definition?
+* How can we create an instance of a struct?
 * What are properties?
 * What are instance methods?
 * What are type methods?
