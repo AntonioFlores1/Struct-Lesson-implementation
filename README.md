@@ -88,7 +88,7 @@ struct Resolution {
 
 The keyword *struct* tells us that we are defining a new structure.  Resolution is the name of this struct.  We have defined a Resolution to have two *properties*, width and height.  Type inference sets these properties to Ints, and gives them both an initial value of 0.
 
-### 2. Structs are Value Types
+### 4. Structs are Value Types
 
 So far, all of the types we have seen so far are actually structures, and thus are value types. The following definition is directly from the Swift Standard Library.
 
@@ -144,7 +144,7 @@ What will be printed to the console in the example above and why?
 
 </details>
 
-### 4. Creating Instances of Structs
+### 5. Creating Instances of Structs
 
 The `Resolution` structure definition only describe what a `Resolution` will look like. They themselves do not describe a *specific* resolution. To do that, you need to create an instance of the structure. Structures use **initializer syntax** for new instances.
 
@@ -247,94 +247,6 @@ userOne.isLoggedIn = true // Compile-time error: userOne is a let constant
 
 ```
 
-### 5. Instance methods
-
-Instance methods are functions that belong to instances of a particular class, structure, or enumeration. We use instance methods to change a property of the object, or to generate a new piece of information.
-
-
-What are some instance methods you are familiar with?
-
-<details>
-<summary>Some examples</summary>
-
-- myArr.max()
-- myArr.sort()
-- myString.replacingInstances(of: " ", with: "")
-- myDictionary.updateValue(0.310, forKey: "Derek Jeter")
-</details>
-
-Just like you are used to using instance methods for the structs we've seen so far, we can define instance methods for structs we write ourselves.
-
-[From the Apple documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html)
-
-```swift
-class Counter {
-    var count = 0
-
-    func increment() {
-        count += 1
-    }
-    func increment(by amount: Int) {
-        count += amount
-    }
-    func reset() {
-        count = 0
-    }
-}
-```
-
-The `Counter` class declares a variable property, `count`, to keep track of the current counter value. In addition, it defines three instance methods:
-
-* `increment()` increments the counter by 1.
-* `increment(by: Int)` increments the counter by a specified integer amount.
-* `reset()` resets the counter to zero.
-
-You call instance methods with the same dot syntax as properties:
-
-```swift
-let myCounter = Counter()
-// the initial counter value is 0
-myCounter.increment()
-// the counter's value is now 1
-myCounter.increment(by: 5)
-// the counter's value is now 6
-myCounter.reset()
-// the counter's value is now 0
-```
-
-#### The `self` Property
-
-Every instance of a type has an implicit property called `self`, which is exactly equivalent to the instance itself. You use the `self` property to refer to the current instance within its own instance methods.
-
-The `increment()` method in the example above could have been written like this:
-
-```swift
-func increment() {
-    self.count += 1
-}
-```
-
-In practice, if you don’t explicitly write `self`, Swift assumes that you are referring to a property or method of the current instance whenever you use a known property or method name within a method.
-
-
-__The main exception to this rule occurs when a parameter name for an instance method has the same name as a property of that instance.__
-
-
-Here, `self` makes the difference clear between a method parameter called `x` and an instance property that is also called `x`:
-
-```swift
-struct Point {
-    var x = 0.0
-    var y = 0.0
-    func isToTheRightOf(x: Double) -> Bool {
-        return self.x > x
-    }
-}
-```
-
-Without the `self` prefix, Swift would assume that both uses of `x` referred to the method parameter called `x`.
-
-
 ### 6. Type Methods
 
 Sometimes, we want to use methods on a class itself instead of on an instance of the class.  Take pi for an example.  
@@ -370,7 +282,7 @@ SomeClass.someTypeMethod()
 
 Within the body of a type method, the implicit `self` property refers to the type itself, rather than an instance of that type. This means that you can use `self` to disambiguate between type properties and type method parameters, just as you do for instance properties and instance method parameters.
 
-### 4. Mutating functions
+### 7. Mutating functions
 
 What happens when we rewrite the Counter class as a struct?
 
@@ -417,7 +329,7 @@ struct Counter {
 If you notice that you are having to mark a lot of things as mutating, it might be a good idea to use a class instead of a structure.
 
 
-### 7. Review and Wrapup
+### 8. Review and Wrapup
 
 * How can we create a struct definition?
 * How can we create an instance of a struct?
