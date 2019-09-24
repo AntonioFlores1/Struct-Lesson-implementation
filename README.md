@@ -181,7 +181,7 @@ struct IdentifyTheError {
 
 </details>
 
-#### Memberwise Initializers (for Structs only!)
+#### Memberwise Initializers
 
 Structs automatically get a memberwise initializer.  This allows you to give different values to the properties in an instance of your struct.
 
