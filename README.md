@@ -1,5 +1,3 @@
-# Struct-Lesson-implementation
-
 ### Structs
 ---
 
