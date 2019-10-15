@@ -1,6 +1,6 @@
-### Structs
----
+# Structs
 
+---
 ### Objectives
 * Understanding structs
 * To create and initialize structs 
